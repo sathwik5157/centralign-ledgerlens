@@ -1,0 +1,52 @@
+{
+  "id": "6463959e52a5",
+  "task": "Find the latest financial results and save them.",
+  "status": "needs_input",
+  "created_at": "2026-10-05T07:01:39.756999+00:00",
+  "events": [
+    {
+      "sequence": 1,
+      "time": "2026-10-05T07:01:39.768309+00:00",
+      "tool": "understand",
+      "reason": "Identify company, reporting period and permitted outcome",
+      "ok": false,
+      "observation": "Specify exactly one company: Aurora Retail, Beacon Software, or Cedar Logistics."
+    }
+  ],
+  "attempted": [],
+  "reports": [],
+  "approvals": [],
+  "steps": 1,
+  "policy": {
+    "organization": "Sandbox Research Team",
+    "canonical_unit": "INR million",
+    "allow_new_records": true,
+    "require_approval_for_overwrite": true,
+    "max_actions": 24,
+    "companies": {
+      "aurora": {
+        "name": "Aurora Retail",
+        "aliases": [
+          "aurora",
+          "aurora retail"
+        ]
+      },
+      "beacon": {
+        "name": "Beacon Software",
+        "aliases": [
+          "beacon",
+          "beacon software"
+        ]
+      },
+      "cedar": {
+        "name": "Cedar Logistics",
+        "aliases": [
+          "cedar",
+          "cedar logistics"
+        ]
+      }
+    }
+  },
+  "updated_at": "2026-10-05T07:01:39.768309+00:00",
+  "message": "Specify exactly one company: Aurora Retail, Beacon Software, or Cedar Logistics."
+}

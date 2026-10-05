@@ -1,0 +1,6 @@
+[
+  {"company":"aurora","period":"FY2025","published":"2025-05-10","paths":["aurora_2025.html"]},
+  {"company":"aurora","period":"FY2026","published":"2026-05-12","paths":["moved/aurora_2026.html","aurora_2026.html"]},
+  {"company":"beacon","period":"FY2026","published":"2026-05-16","paths":["beacon_2026.html","beacon_2026_secondary.html"]},
+  {"company":"cedar","period":"FY2026","published":"2026-05-18","paths":["cedar_2026.html"]}
+]

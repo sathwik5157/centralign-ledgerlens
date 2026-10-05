@@ -1,0 +1,215 @@
+{
+  "id": "13b2689d32fb",
+  "task": "Summarize Cedar Logistics latest revenue, net profit, margin and growth. Do not save.",
+  "status": "completed",
+  "created_at": "2026-10-05T07:01:30.621927+00:00",
+  "events": [
+    {
+      "sequence": 1,
+      "time": "2026-10-05T07:01:30.639672+00:00",
+      "tool": "understand",
+      "reason": "Identify company, reporting period and permitted outcome",
+      "ok": true,
+      "observation": {
+        "intent": {
+          "company": "cedar",
+          "period": "latest",
+          "write": false
+        },
+        "mode": "bounded grammar (no LLM call)",
+        "plan": [
+          "Discover approved sources",
+          "Read and normalize annual metrics",
+          "Resolve data conflicts",
+          "Verify source evidence",
+          "Return read-only summary"
+        ]
+      }
+    },
+    {
+      "sequence": 2,
+      "time": "2026-10-05T07:01:30.667933+00:00",
+      "tool": "discover_sources",
+      "reason": "Find the latest eligible annual report in the approved catalog",
+      "ok": true,
+      "observation": {
+        "period": "FY2026",
+        "paths": [
+          "cedar_2026.html"
+        ],
+        "scope": "Latest within the fictional sandbox catalog; not the public internet"
+      }
+    },
+    {
+      "sequence": 3,
+      "time": "2026-10-05T07:01:30.691830+00:00",
+      "tool": "read_report",
+      "reason": "Read the next approved source; use another source after a failed read",
+      "ok": true,
+      "observation": {
+        "company": "cedar",
+        "period": "FY2026",
+        "unit": "INR million",
+        "revenue": "500.00",
+        "net_profit": "-25.00",
+        "prior_revenue": "400.00",
+        "net_margin_pct": "-5.00",
+        "revenue_growth_pct": "25.00",
+        "source_unit": "INR lakh",
+        "raw_fields": {
+          "Company": "cedar",
+          "Period": "FY2026",
+          "Prior period": "FY2025",
+          "Unit": "INR lakh",
+          "Revenue": "5,000",
+          "Net profit": "-250",
+          "Prior revenue": "4,000"
+        },
+        "source": "cedar_2026.html",
+        "sha256": "4420bdaffaffe5bdc7b57e98a62603ef7e4008d87185a991fbf096784d311a30"
+      }
+    },
+    {
+      "sequence": 4,
+      "time": "2026-10-05T07:01:30.705831+00:00",
+      "tool": "validate",
+      "reason": "Compare normalized figures and detect conflicting source values",
+      "ok": true,
+      "observation": {
+        "candidate": {
+          "company": "cedar",
+          "period": "FY2026",
+          "unit": "INR million",
+          "revenue": "500.00",
+          "net_profit": "-25.00",
+          "prior_revenue": "400.00",
+          "net_margin_pct": "-5.00",
+          "revenue_growth_pct": "25.00",
+          "source": "cedar_2026.html",
+          "sha256": "4420bdaffaffe5bdc7b57e98a62603ef7e4008d87185a991fbf096784d311a30"
+        },
+        "warnings": []
+      }
+    },
+    {
+      "sequence": 5,
+      "time": "2026-10-05T07:01:30.717829+00:00",
+      "tool": "verify_summary",
+      "reason": "Re-read the evidence and validate the requested read-only result",
+      "ok": true,
+      "observation": {
+        "summary": "Verified read-only summary; no record written. Cedar Logistics FY2026: revenue 500.00 and net profit -25.00 INR million; net margin -5.00%; revenue growth 25.00%.",
+        "checks": {
+          "source_hash_match": true,
+          "recomputed_metrics_match": true,
+          "database_readback_match": null,
+          "verified_at": "2026-10-05T07:01:30.717829+00:00",
+          "record_key": [
+            "cedar",
+            "FY2026"
+          ]
+        }
+      }
+    }
+  ],
+  "attempted": [
+    "cedar_2026.html"
+  ],
+  "reports": [
+    {
+      "company": "cedar",
+      "period": "FY2026",
+      "unit": "INR million",
+      "revenue": "500.00",
+      "net_profit": "-25.00",
+      "prior_revenue": "400.00",
+      "net_margin_pct": "-5.00",
+      "revenue_growth_pct": "25.00",
+      "source_unit": "INR lakh",
+      "raw_fields": {
+        "Company": "cedar",
+        "Period": "FY2026",
+        "Prior period": "FY2025",
+        "Unit": "INR lakh",
+        "Revenue": "5,000",
+        "Net profit": "-250",
+        "Prior revenue": "4,000"
+      },
+      "source": "cedar_2026.html",
+      "sha256": "4420bdaffaffe5bdc7b57e98a62603ef7e4008d87185a991fbf096784d311a30"
+    }
+  ],
+  "approvals": [],
+  "steps": 5,
+  "policy": {
+    "organization": "Sandbox Research Team",
+    "canonical_unit": "INR million",
+    "allow_new_records": true,
+    "require_approval_for_overwrite": true,
+    "max_actions": 24,
+    "companies": {
+      "aurora": {
+        "name": "Aurora Retail",
+        "aliases": [
+          "aurora",
+          "aurora retail"
+        ]
+      },
+      "beacon": {
+        "name": "Beacon Software",
+        "aliases": [
+          "beacon",
+          "beacon software"
+        ]
+      },
+      "cedar": {
+        "name": "Cedar Logistics",
+        "aliases": [
+          "cedar",
+          "cedar logistics"
+        ]
+      }
+    }
+  },
+  "updated_at": "2026-10-05T07:01:30.717829+00:00",
+  "intent": {
+    "company": "cedar",
+    "period": "latest",
+    "write": false
+  },
+  "parser_mode": "bounded grammar (no LLM call)",
+  "plan": [
+    "Discover approved sources",
+    "Read and normalize annual metrics",
+    "Resolve data conflicts",
+    "Verify source evidence",
+    "Return read-only summary"
+  ],
+  "period": "FY2026",
+  "sources": [
+    "cedar_2026.html"
+  ],
+  "candidate": {
+    "company": "cedar",
+    "period": "FY2026",
+    "unit": "INR million",
+    "revenue": "500.00",
+    "net_profit": "-25.00",
+    "prior_revenue": "400.00",
+    "net_margin_pct": "-5.00",
+    "revenue_growth_pct": "25.00",
+    "source": "cedar_2026.html",
+    "sha256": "4420bdaffaffe5bdc7b57e98a62603ef7e4008d87185a991fbf096784d311a30"
+  },
+  "message": "Verified read-only summary; no record written. Cedar Logistics FY2026: revenue 500.00 and net profit -25.00 INR million; net margin -5.00%; revenue growth 25.00%.",
+  "verification": {
+    "source_hash_match": true,
+    "recomputed_metrics_match": true,
+    "database_readback_match": null,
+    "verified_at": "2026-10-05T07:01:30.717829+00:00",
+    "record_key": [
+      "cedar",
+      "FY2026"
+    ]
+  }
+}

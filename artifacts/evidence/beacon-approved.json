@@ -1,0 +1,331 @@
+{
+  "id": "c8de5a98c56c",
+  "task": "Research Beacon Software's latest annual financial results and save the verified figures.",
+  "status": "completed",
+  "created_at": "2026-10-05T07:01:11.207239+00:00",
+  "events": [
+    {
+      "sequence": 1,
+      "time": "2026-10-05T07:01:11.222737+00:00",
+      "tool": "understand",
+      "reason": "Identify company, reporting period and permitted outcome",
+      "ok": true,
+      "observation": {
+        "intent": {
+          "company": "beacon",
+          "period": "latest",
+          "write": true
+        },
+        "mode": "bounded grammar (no LLM call)",
+        "plan": [
+          "Discover approved sources",
+          "Read and normalize annual metrics",
+          "Resolve data conflicts",
+          "Check write permissions and existing record",
+          "Save to SQLite",
+          "Read back and verify"
+        ]
+      }
+    },
+    {
+      "sequence": 2,
+      "time": "2026-10-05T07:01:11.231438+00:00",
+      "tool": "discover_sources",
+      "reason": "Find the latest eligible annual report in the approved catalog",
+      "ok": true,
+      "observation": {
+        "period": "FY2026",
+        "paths": [
+          "beacon_2026.html",
+          "beacon_2026_secondary.html"
+        ],
+        "scope": "Latest within the fictional sandbox catalog; not the public internet"
+      }
+    },
+    {
+      "sequence": 3,
+      "time": "2026-10-05T07:01:11.301418+00:00",
+      "tool": "read_report",
+      "reason": "Read the next approved source; use another source after a failed read",
+      "ok": true,
+      "observation": {
+        "company": "beacon",
+        "period": "FY2026",
+        "unit": "INR million",
+        "revenue": "800.00",
+        "net_profit": "160.00",
+        "prior_revenue": "640.00",
+        "net_margin_pct": "20.00",
+        "revenue_growth_pct": "25.00",
+        "source_unit": "INR million",
+        "raw_fields": {
+          "Company": "beacon",
+          "Period": "FY2026",
+          "Prior period": "FY2025",
+          "Unit": "INR million",
+          "Revenue": "800",
+          "Net profit": "160",
+          "Prior revenue": "640"
+        },
+        "source": "beacon_2026.html",
+        "sha256": "fc68441c9877c7ee5ed52b3976088d8721e7b2aa1364993291a79a476b849133"
+      }
+    },
+    {
+      "sequence": 4,
+      "time": "2026-10-05T07:01:11.311433+00:00",
+      "tool": "read_report",
+      "reason": "Read the next approved source; use another source after a failed read",
+      "ok": true,
+      "observation": {
+        "company": "beacon",
+        "period": "FY2026",
+        "unit": "INR million",
+        "revenue": "810.00",
+        "net_profit": "160.00",
+        "prior_revenue": "640.00",
+        "net_margin_pct": "19.75",
+        "revenue_growth_pct": "26.56",
+        "source_unit": "INR million",
+        "raw_fields": {
+          "Company": "beacon",
+          "Period": "FY2026",
+          "Prior period": "FY2025",
+          "Unit": "INR million",
+          "Revenue": "810",
+          "Net profit": "160",
+          "Prior revenue": "640"
+        },
+        "source": "beacon_2026_secondary.html",
+        "sha256": "e899cf5cf1ccbadfbe31d239c21537fefa0c3cd36c45765337e14512fd548767"
+      }
+    },
+    {
+      "sequence": 5,
+      "time": "2026-10-05T07:01:11.319418+00:00",
+      "tool": "validate",
+      "reason": "Compare normalized figures and detect conflicting source values",
+      "ok": true,
+      "observation": {
+        "kind": "source_conflict",
+        "message": "Sources disagree. Select the report to use and explain why, or reject the task."
+      }
+    },
+    {
+      "sequence": 6,
+      "time": "2026-10-05T07:01:23.495638+00:00",
+      "tool": "human_decision",
+      "reason": "Apply an explicit human decision",
+      "ok": true,
+      "observation": {
+        "kind": "source_conflict",
+        "approved": true,
+        "reason": "Reviewed the sandbox primary annual report; use its 800 million revenue.",
+        "source": "beacon_2026.html",
+        "time": "2026-10-05T07:01:23.495638+00:00"
+      }
+    },
+    {
+      "sequence": 7,
+      "time": "2026-10-05T07:01:23.504572+00:00",
+      "tool": "validate",
+      "reason": "Compare normalized figures and detect conflicting source values",
+      "ok": true,
+      "observation": {
+        "candidate": {
+          "company": "beacon",
+          "period": "FY2026",
+          "unit": "INR million",
+          "revenue": "800.00",
+          "net_profit": "160.00",
+          "prior_revenue": "640.00",
+          "net_margin_pct": "20.00",
+          "revenue_growth_pct": "25.00",
+          "source": "beacon_2026.html",
+          "sha256": "fc68441c9877c7ee5ed52b3976088d8721e7b2aa1364993291a79a476b849133"
+        },
+        "warnings": []
+      }
+    },
+    {
+      "sequence": 8,
+      "time": "2026-10-05T07:01:23.524341+00:00",
+      "tool": "inspect_record",
+      "reason": "Check existing data before writing to the research system",
+      "ok": true,
+      "observation": {
+        "record": "not present"
+      }
+    },
+    {
+      "sequence": 9,
+      "time": "2026-10-05T07:01:23.543522+00:00",
+      "tool": "save_record",
+      "reason": "Apply the company write policy and save idempotently",
+      "ok": true,
+      "observation": {
+        "outcome": "saved",
+        "key": [
+          "beacon",
+          "FY2026"
+        ]
+      }
+    },
+    {
+      "sequence": 10,
+      "time": "2026-10-05T07:01:23.559519+00:00",
+      "tool": "verify_record",
+      "reason": "Re-open stored data and source files before declaring success",
+      "ok": true,
+      "observation": {
+        "summary": "Saved and independently read back. Beacon Software FY2026: revenue 800.00 and net profit 160.00 INR million; net margin 20.00%; revenue growth 25.00%.",
+        "checks": {
+          "source_hash_match": true,
+          "recomputed_metrics_match": true,
+          "database_readback_match": true,
+          "verified_at": "2026-10-05T07:01:23.559519+00:00",
+          "record_key": [
+            "beacon",
+            "FY2026"
+          ]
+        }
+      }
+    }
+  ],
+  "attempted": [
+    "beacon_2026.html",
+    "beacon_2026_secondary.html"
+  ],
+  "reports": [
+    {
+      "company": "beacon",
+      "period": "FY2026",
+      "unit": "INR million",
+      "revenue": "800.00",
+      "net_profit": "160.00",
+      "prior_revenue": "640.00",
+      "net_margin_pct": "20.00",
+      "revenue_growth_pct": "25.00",
+      "source_unit": "INR million",
+      "raw_fields": {
+        "Company": "beacon",
+        "Period": "FY2026",
+        "Prior period": "FY2025",
+        "Unit": "INR million",
+        "Revenue": "800",
+        "Net profit": "160",
+        "Prior revenue": "640"
+      },
+      "source": "beacon_2026.html",
+      "sha256": "fc68441c9877c7ee5ed52b3976088d8721e7b2aa1364993291a79a476b849133"
+    },
+    {
+      "company": "beacon",
+      "period": "FY2026",
+      "unit": "INR million",
+      "revenue": "810.00",
+      "net_profit": "160.00",
+      "prior_revenue": "640.00",
+      "net_margin_pct": "19.75",
+      "revenue_growth_pct": "26.56",
+      "source_unit": "INR million",
+      "raw_fields": {
+        "Company": "beacon",
+        "Period": "FY2026",
+        "Prior period": "FY2025",
+        "Unit": "INR million",
+        "Revenue": "810",
+        "Net profit": "160",
+        "Prior revenue": "640"
+      },
+      "source": "beacon_2026_secondary.html",
+      "sha256": "e899cf5cf1ccbadfbe31d239c21537fefa0c3cd36c45765337e14512fd548767"
+    }
+  ],
+  "approvals": [
+    {
+      "kind": "source_conflict",
+      "approved": true,
+      "reason": "Reviewed the sandbox primary annual report; use its 800 million revenue.",
+      "source": "beacon_2026.html",
+      "time": "2026-10-05T07:01:23.495638+00:00"
+    }
+  ],
+  "steps": 9,
+  "policy": {
+    "organization": "Sandbox Research Team",
+    "canonical_unit": "INR million",
+    "allow_new_records": true,
+    "require_approval_for_overwrite": true,
+    "max_actions": 24,
+    "companies": {
+      "aurora": {
+        "name": "Aurora Retail",
+        "aliases": [
+          "aurora",
+          "aurora retail"
+        ]
+      },
+      "beacon": {
+        "name": "Beacon Software",
+        "aliases": [
+          "beacon",
+          "beacon software"
+        ]
+      },
+      "cedar": {
+        "name": "Cedar Logistics",
+        "aliases": [
+          "cedar",
+          "cedar logistics"
+        ]
+      }
+    }
+  },
+  "updated_at": "2026-10-05T07:01:23.559519+00:00",
+  "intent": {
+    "company": "beacon",
+    "period": "latest",
+    "write": true
+  },
+  "parser_mode": "bounded grammar (no LLM call)",
+  "plan": [
+    "Discover approved sources",
+    "Read and normalize annual metrics",
+    "Resolve data conflicts",
+    "Check write permissions and existing record",
+    "Save to SQLite",
+    "Read back and verify"
+  ],
+  "period": "FY2026",
+  "sources": [
+    "beacon_2026.html",
+    "beacon_2026_secondary.html"
+  ],
+  "message": "Saved and independently read back. Beacon Software FY2026: revenue 800.00 and net profit 160.00 INR million; net margin 20.00%; revenue growth 25.00%.",
+  "chosen_source": "beacon_2026.html",
+  "candidate": {
+    "company": "beacon",
+    "period": "FY2026",
+    "unit": "INR million",
+    "revenue": "800.00",
+    "net_profit": "160.00",
+    "prior_revenue": "640.00",
+    "net_margin_pct": "20.00",
+    "revenue_growth_pct": "25.00",
+    "source": "beacon_2026.html",
+    "sha256": "fc68441c9877c7ee5ed52b3976088d8721e7b2aa1364993291a79a476b849133"
+  },
+  "existing": null,
+  "written": true,
+  "verification": {
+    "source_hash_match": true,
+    "recomputed_metrics_match": true,
+    "database_readback_match": true,
+    "verified_at": "2026-10-05T07:01:23.559519+00:00",
+    "record_key": [
+      "beacon",
+      "FY2026"
+    ]
+  }
+}

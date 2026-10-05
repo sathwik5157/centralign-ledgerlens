@@ -1,0 +1,280 @@
+{
+  "id": "6c84977546cb",
+  "task": "Find Aurora Retail's latest annual revenue and profit, calculate margin and growth, and save the research record.",
+  "status": "completed",
+  "created_at": "2026-10-05T07:01:04.051152+00:00",
+  "events": [
+    {
+      "sequence": 1,
+      "time": "2026-10-05T07:01:04.064610+00:00",
+      "tool": "understand",
+      "reason": "Identify company, reporting period and permitted outcome",
+      "ok": true,
+      "observation": {
+        "intent": {
+          "company": "aurora",
+          "period": "latest",
+          "write": true
+        },
+        "mode": "bounded grammar (no LLM call)",
+        "plan": [
+          "Discover approved sources",
+          "Read and normalize annual metrics",
+          "Resolve data conflicts",
+          "Check write permissions and existing record",
+          "Save to SQLite",
+          "Read back and verify"
+        ]
+      }
+    },
+    {
+      "sequence": 2,
+      "time": "2026-10-05T07:01:04.073622+00:00",
+      "tool": "discover_sources",
+      "reason": "Find the latest eligible annual report in the approved catalog",
+      "ok": true,
+      "observation": {
+        "period": "FY2026",
+        "paths": [
+          "moved/aurora_2026.html",
+          "aurora_2026.html"
+        ],
+        "scope": "Latest within the fictional sandbox catalog; not the public internet"
+      }
+    },
+    {
+      "sequence": 3,
+      "time": "2026-10-05T07:01:04.100506+00:00",
+      "tool": "read_report",
+      "reason": "Read the next approved source; use another source after a failed read",
+      "ok": false,
+      "observation": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\sathw\\\\Documents\\\\JOB\\\\centralign-ledgerlens\\\\fixtures\\\\moved\\\\aurora_2026.html'"
+    },
+    {
+      "sequence": 4,
+      "time": "2026-10-05T07:01:04.109505+00:00",
+      "tool": "read_report",
+      "reason": "Read the next approved source; use another source after a failed read",
+      "ok": true,
+      "observation": {
+        "company": "aurora",
+        "period": "FY2026",
+        "unit": "INR million",
+        "revenue": "1250.00",
+        "net_profit": "150.00",
+        "prior_revenue": "1000.00",
+        "net_margin_pct": "12.00",
+        "revenue_growth_pct": "25.00",
+        "source_unit": "INR crore",
+        "raw_fields": {
+          "Company": "aurora",
+          "Period": "FY2026",
+          "Prior period": "FY2025",
+          "Unit": "INR crore",
+          "Revenue": "125",
+          "Net profit": "15",
+          "Prior revenue": "100"
+        },
+        "source": "aurora_2026.html",
+        "sha256": "06d9405027a07a450ca683c3c9dbed9f702a0386ea6fc6b90156b468271ef298"
+      }
+    },
+    {
+      "sequence": 5,
+      "time": "2026-10-05T07:01:04.148444+00:00",
+      "tool": "validate",
+      "reason": "Compare normalized figures and detect conflicting source values",
+      "ok": true,
+      "observation": {
+        "candidate": {
+          "company": "aurora",
+          "period": "FY2026",
+          "unit": "INR million",
+          "revenue": "1250.00",
+          "net_profit": "150.00",
+          "prior_revenue": "1000.00",
+          "net_margin_pct": "12.00",
+          "revenue_growth_pct": "25.00",
+          "source": "aurora_2026.html",
+          "sha256": "06d9405027a07a450ca683c3c9dbed9f702a0386ea6fc6b90156b468271ef298"
+        },
+        "warnings": []
+      }
+    },
+    {
+      "sequence": 6,
+      "time": "2026-10-05T07:01:04.157500+00:00",
+      "tool": "inspect_record",
+      "reason": "Check existing data before writing to the research system",
+      "ok": true,
+      "observation": {
+        "data": {
+          "company": "aurora",
+          "period": "FY2026",
+          "unit": "INR million",
+          "revenue": "1250.00",
+          "net_profit": "150.00",
+          "prior_revenue": "1000.00",
+          "net_margin_pct": "12.00",
+          "revenue_growth_pct": "25.00",
+          "source": "aurora_2026.html",
+          "sha256": "06d9405027a07a450ca683c3c9dbed9f702a0386ea6fc6b90156b468271ef298"
+        },
+        "version": "81753c83afc78d4cf643870cc0963c23f7d891d997cb7f18fd9bd0210554575b"
+      }
+    },
+    {
+      "sequence": 7,
+      "time": "2026-10-05T07:01:04.167444+00:00",
+      "tool": "save_record",
+      "reason": "Apply the company write policy and save idempotently",
+      "ok": true,
+      "observation": {
+        "outcome": "already present",
+        "key": [
+          "aurora",
+          "FY2026"
+        ]
+      }
+    },
+    {
+      "sequence": 8,
+      "time": "2026-10-05T07:01:04.178941+00:00",
+      "tool": "verify_record",
+      "reason": "Re-open stored data and source files before declaring success",
+      "ok": true,
+      "observation": {
+        "summary": "Saved and independently read back. Aurora Retail FY2026: revenue 1250.00 and net profit 150.00 INR million; net margin 12.00%; revenue growth 25.00%.",
+        "checks": {
+          "source_hash_match": true,
+          "recomputed_metrics_match": true,
+          "database_readback_match": true,
+          "verified_at": "2026-10-05T07:01:04.178941+00:00",
+          "record_key": [
+            "aurora",
+            "FY2026"
+          ]
+        }
+      }
+    }
+  ],
+  "attempted": [
+    "moved/aurora_2026.html",
+    "aurora_2026.html"
+  ],
+  "reports": [
+    {
+      "company": "aurora",
+      "period": "FY2026",
+      "unit": "INR million",
+      "revenue": "1250.00",
+      "net_profit": "150.00",
+      "prior_revenue": "1000.00",
+      "net_margin_pct": "12.00",
+      "revenue_growth_pct": "25.00",
+      "source_unit": "INR crore",
+      "raw_fields": {
+        "Company": "aurora",
+        "Period": "FY2026",
+        "Prior period": "FY2025",
+        "Unit": "INR crore",
+        "Revenue": "125",
+        "Net profit": "15",
+        "Prior revenue": "100"
+      },
+      "source": "aurora_2026.html",
+      "sha256": "06d9405027a07a450ca683c3c9dbed9f702a0386ea6fc6b90156b468271ef298"
+    }
+  ],
+  "approvals": [],
+  "steps": 8,
+  "policy": {
+    "organization": "Sandbox Research Team",
+    "canonical_unit": "INR million",
+    "allow_new_records": true,
+    "require_approval_for_overwrite": true,
+    "max_actions": 24,
+    "companies": {
+      "aurora": {
+        "name": "Aurora Retail",
+        "aliases": [
+          "aurora",
+          "aurora retail"
+        ]
+      },
+      "beacon": {
+        "name": "Beacon Software",
+        "aliases": [
+          "beacon",
+          "beacon software"
+        ]
+      },
+      "cedar": {
+        "name": "Cedar Logistics",
+        "aliases": [
+          "cedar",
+          "cedar logistics"
+        ]
+      }
+    }
+  },
+  "updated_at": "2026-10-05T07:01:04.178941+00:00",
+  "intent": {
+    "company": "aurora",
+    "period": "latest",
+    "write": true
+  },
+  "parser_mode": "bounded grammar (no LLM call)",
+  "plan": [
+    "Discover approved sources",
+    "Read and normalize annual metrics",
+    "Resolve data conflicts",
+    "Check write permissions and existing record",
+    "Save to SQLite",
+    "Read back and verify"
+  ],
+  "period": "FY2026",
+  "sources": [
+    "moved/aurora_2026.html",
+    "aurora_2026.html"
+  ],
+  "candidate": {
+    "company": "aurora",
+    "period": "FY2026",
+    "unit": "INR million",
+    "revenue": "1250.00",
+    "net_profit": "150.00",
+    "prior_revenue": "1000.00",
+    "net_margin_pct": "12.00",
+    "revenue_growth_pct": "25.00",
+    "source": "aurora_2026.html",
+    "sha256": "06d9405027a07a450ca683c3c9dbed9f702a0386ea6fc6b90156b468271ef298"
+  },
+  "existing": {
+    "data": {
+      "company": "aurora",
+      "period": "FY2026",
+      "unit": "INR million",
+      "revenue": "1250.00",
+      "net_profit": "150.00",
+      "prior_revenue": "1000.00",
+      "net_margin_pct": "12.00",
+      "revenue_growth_pct": "25.00",
+      "source": "aurora_2026.html",
+      "sha256": "06d9405027a07a450ca683c3c9dbed9f702a0386ea6fc6b90156b468271ef298"
+    },
+    "version": "81753c83afc78d4cf643870cc0963c23f7d891d997cb7f18fd9bd0210554575b"
+  },
+  "written": true,
+  "message": "Saved and independently read back. Aurora Retail FY2026: revenue 1250.00 and net profit 150.00 INR million; net margin 12.00%; revenue growth 25.00%.",
+  "verification": {
+    "source_hash_match": true,
+    "recomputed_metrics_match": true,
+    "database_readback_match": true,
+    "verified_at": "2026-10-05T07:01:04.178941+00:00",
+    "record_key": [
+      "aurora",
+      "FY2026"
+    ]
+  }
+}

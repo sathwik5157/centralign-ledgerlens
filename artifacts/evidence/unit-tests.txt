@@ -1,0 +1,30 @@
+test_http_boundary_and_real_execution (test_worker.ApiTests.test_http_boundary_and_real_execution) ... ok
+test_action_budget_stops_run (test_worker.WorkerTests.test_action_budget_stops_run) ... ok
+test_all_sources_fail_does_not_hallucinate (test_worker.WorkerTests.test_all_sources_fail_does_not_hallucinate) ... ok
+test_approval_requires_reason_and_observed_source (test_worker.WorkerTests.test_approval_requires_reason_and_observed_source) ... ok
+test_changed_record_requires_approval (test_worker.WorkerTests.test_changed_record_requires_approval) ... ok
+test_compare_and_swap_prevents_stale_write (test_worker.WorkerTests.test_compare_and_swap_prevents_stale_write) ... ok
+test_conflict_pauses_and_survives_restart (test_worker.WorkerTests.test_conflict_pauses_and_survives_restart) ... ok
+test_corrupt_numeric_and_duplicate_fields_rejected (test_worker.WorkerTests.test_corrupt_numeric_and_duplicate_fields_rejected) ... ok
+test_crash_after_write_before_checkpoint_is_idempotent (test_worker.WorkerTests.test_crash_after_write_before_checkpoint_is_idempotent) ... ok
+test_database_tampering_fails_verification (test_worker.WorkerTests.test_database_tampering_fails_verification) ... ok
+test_explicit_period (test_worker.WorkerTests.test_explicit_period) ... ok
+test_happy_path_real_recovery_and_metrics (test_worker.WorkerTests.test_happy_path_real_recovery_and_metrics) ... ok
+test_idempotent_rerun (test_worker.WorkerTests.test_idempotent_rerun) ... ok
+test_missing_company_unsupported_and_ambiguous_tasks (test_worker.WorkerTests.test_missing_company_unsupported_and_ambiguous_tasks) ... ok
+test_missing_period_requires_clarification (test_worker.WorkerTests.test_missing_period_requires_clarification) ... ok
+test_negative_write_language_and_record_noun_are_readonly (test_worker.WorkerTests.test_negative_write_language_and_record_noun_are_readonly) ... ok
+test_new_record_policy_requires_human (test_worker.WorkerTests.test_new_record_policy_requires_human) ... ok
+test_optional_model_cannot_increase_permissions (test_worker.WorkerTests.test_optional_model_cannot_increase_permissions) ... ok
+test_path_traversal_blocked (test_worker.WorkerTests.test_path_traversal_blocked) ... ok
+test_read_only_negative_profit_and_unit_conversion (test_worker.WorkerTests.test_read_only_negative_profit_and_unit_conversion) ... ok
+test_rejected_conflict_does_not_write (test_worker.WorkerTests.test_rejected_conflict_does_not_write) ... ok
+test_source_changed_after_extraction_fails_verification (test_worker.WorkerTests.test_source_changed_after_extraction_fails_verification) ... ok
+test_stale_approval_is_discarded_and_requested_again (test_worker.WorkerTests.test_stale_approval_is_discarded_and_requested_again) ... ok
+test_untrusted_prose_cannot_change_plan (test_worker.WorkerTests.test_untrusted_prose_cannot_change_plan) ... ok
+test_zero_prior_revenue_does_not_divide_by_zero (test_worker.WorkerTests.test_zero_prior_revenue_does_not_divide_by_zero) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 1.913s
+
+OK

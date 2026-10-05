@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "checked_at": "2026-10-05T07:01:55.274Z",
+  "scenarios": [
+    "missing source recovery and verified write",
+    "idempotent repeat",
+    "conflict blocks write until approval",
+    "approval resumes and verifies",
+    "read-only loss and unit conversion",
+    "clarification without guessing"
+  ],
+  "page_errors": [],
+  "real_model_run": false
+}

@@ -1,0 +1,12 @@
+{
+  "organization": "Sandbox Research Team",
+  "canonical_unit": "INR million",
+  "allow_new_records": true,
+  "require_approval_for_overwrite": true,
+  "max_actions": 24,
+  "companies": {
+    "aurora": {"name": "Aurora Retail", "aliases": ["aurora", "aurora retail"]},
+    "beacon": {"name": "Beacon Software", "aliases": ["beacon", "beacon software"]},
+    "cedar": {"name": "Cedar Logistics", "aliases": ["cedar", "cedar logistics"]}
+  }
+}
